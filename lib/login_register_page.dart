@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class LoginRegisterPage extends StatelessWidget {
+class LoginRegisterPage extends StatefulWidget {
+  @override
+  _LoginRegisterPageState createState() => _LoginRegisterPageState();
+}
+
+class _LoginRegisterPageState extends State<LoginRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +19,7 @@ class LoginRegisterPage extends StatelessWidget {
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: createInputs() + createButtons(),
+              children: createInputs(context) + createButtons(),
             ),
           ),
         ),
@@ -23,8 +28,11 @@ class LoginRegisterPage extends StatelessWidget {
   }
 }
 
-List<Widget> createInputs() {
-  var currentNode;
+List<Widget> createInputs(BuildContext context) {
+
+  final FocusNode _emailNode = FocusNode();
+  final FocusNode _passwordNode = FocusNode();
+
   return [
     SizedBox(
       height: 10.0,
@@ -35,8 +43,13 @@ List<Widget> createInputs() {
     ),
     TextFormField(
       keyboardType: TextInputType.emailAddress,
+      focusNode: _emailNode,
       textInputAction: TextInputAction.next,
       style: TextStyle(color: Colors.white),
+      onFieldSubmitted: (term){
+        _emailNode.unfocus();
+        FocusScope.of(context).requestFocus(_passwordNode);
+      },
       decoration: InputDecoration(
         labelText: 'Email',
         enabledBorder:
@@ -55,9 +68,9 @@ List<Widget> createInputs() {
       keyboardType: TextInputType.visiblePassword,
       textInputAction: TextInputAction.done,
       obscureText: true,
-      focusNode: currentNode,
+      focusNode: _passwordNode,
       onFieldSubmitted: (term){
-
+        _passwordNode.unfocus();
       },
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(

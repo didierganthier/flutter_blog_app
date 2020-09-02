@@ -5,6 +5,12 @@ class LoginRegisterPage extends StatefulWidget {
   _LoginRegisterPageState createState() => _LoginRegisterPageState();
 }
 
+enum FormType
+{
+  login,
+  register
+}
+
 class _LoginRegisterPageState extends State<LoginRegisterPage> {
   @override
   Widget build(BuildContext context) {

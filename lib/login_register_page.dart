@@ -24,6 +24,7 @@ class LoginRegisterPage extends StatelessWidget {
 }
 
 List<Widget> createInputs() {
+  var currentNode;
   return [
     SizedBox(
       height: 10.0,
@@ -33,14 +34,42 @@ List<Widget> createInputs() {
       height: 20.0,
     ),
     TextFormField(
-      decoration: InputDecoration(labelText: 'Email', labelStyle: TextStyle(color: Colors.pink),border: OutlineInputBorder(borderSide: BorderSide(color: Colors.pink))),
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        labelText: 'Email',
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.pink)),
+        labelStyle: TextStyle(color: Colors.pink),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.pink),
+        ),
+      ),
       autofocus: true,
     ),
     SizedBox(
       height: 10.0,
     ),
     TextFormField(
-      decoration: InputDecoration(labelText: 'Password', labelStyle: TextStyle(color: Colors.pink),border: OutlineInputBorder(borderSide: BorderSide(color: Colors.pink))),
+      keyboardType: TextInputType.visiblePassword,
+      textInputAction: TextInputAction.done,
+      obscureText: true,
+      focusNode: currentNode,
+      onFieldSubmitted: (term){
+
+      },
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        labelText: 'Password',
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.pink),
+        ),
+        labelStyle: TextStyle(color: Colors.pink),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.pink),
+        ),
+      ),
     ),
     SizedBox(
       height: 10.0,

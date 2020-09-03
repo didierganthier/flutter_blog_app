@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
       body: Container(),
       bottomNavigationBar: FlipBoxBar(
         selectedIndex: selectedIndex,
+        navBarHeight: 80,
         items: [
           FlipBarItem(
               icon: Icon(Icons.local_car_wash),
